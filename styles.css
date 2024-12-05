@@ -1,73 +1,348 @@
 :root {
-    color-scheme: light dark;
     --primary: mediumpurple;
     view-transition-name: root;
 }
-html, body {
+* {
     box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: 100%;
-    position: relative;
-    margin: 0; 
-    padding: 0; 
-    color: CanvasText;
+    margin: 0 auto;
+    padding: 0;
+}
+html, body {
+    display: block;
     background-color: Canvas;
-    /* background: #ffffff url(image/background.jpg) center center/cover no-repeat;
-    filter: blur(5px); */
+    color: CanvasText;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 16px;
     transition: 0.5s;
     -webkit-tap-highlight-color: transparent;
     scroll-behavior: smooth;
+    scroll-padding-top: 100px;
+    z-index: 0;
 }
-.background {
+.no-script {
+    transition: 0.5s;
+    color: CanvasText;
+    background-color: color-mix(in srgb, red, transparent 90%);
+    backdrop-filter: blur(5px);
+    font-family: monospace;
+    z-index: 999;
+    overflow: hidden;
+    position: sticky;
+    top: 65px;
+    font-weight: 600;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.header {
+    transition: 0.5s;
+    background-color: color-mix(in srgb, Canvas, transparent 17%);
+    backdrop-filter: blur(5px);
     z-index: 1;
-    display: flex;
-    position: absolute;
-    top: 0;
-    width: 100%;    
-    height: 100%;
     overflow: hidden;
-    animation: backgroundchange 2s ease-in-out infinite alternate;
+    position: sticky;
+    top: 0px;
+    align-items: center;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    margin: 0;
+    text-decoration: none;
+    box-shadow: 0 1px 0px color-mix(in srgb, CanvasText, Canvas 70%);
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
-.background svg {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+.header:hover {
+    box-shadow: 0 1px 0px color-mix(in srgb, CanvasText, Canvas 0%);
 }
-.background svg path {
-    animation: backgroundchange 2s ease-in-out infinite alternate;
+.header .header-title {
+    transition: 0.3s;
+    --animation-color: var(--primary);
+    --animation-extra: CanvasText;
+    --animation-mix: 100%;
+    text-align: left;
+    z-index: 2;
+    text-decoration: none;
+    color: color-mix(in srgb, CanvasText, var(--primary) 70%);
+    font-size: 1.3rem;
+    border-radius: 50px;
+    background: radial-gradient(
+        circle at 100%,
+        color-mix(in srgb, var(--animation-extra), var(--animation-color) var(--animation-mix)),
+        color-mix(in srgb, var(--animation-extra), var(--animation-color) 50%)  50%,
+        color-mix(in srgb, var(--animation-extra), var(--animation-color) var(--animation-mix)) 75%,
+        color-mix(in srgb, var(--animation-extra), var(--animation-color) var(--animation-mix)) 75%
+    );
+    font-weight: 600;
+    background-size: 200% auto;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: animatedTextGradient 1.5s linear infinite;
 }
-@keyframes backgroundchange{
-    from {
-        width: 100%;
-        height: 100%;
-        stroke-width: 2px;
-    }
+/* :lang(ru) .header .header-title {
+    --animation-color: yellow;
+    --animation-extra: blue;
+    --animation-mix: 35%;
+} */
+.header .header-title:hover {
+    transition: 0.3s;
+    color: color-mix(in srgb, CanvasText, var(--primary) 0%);
+    animation: animatedTextGradientMix 0.3s forwards;
+}
+.header .header-title:focus-visible {
+    outline-offset: 7px;
+}
+@keyframes animatedTextGradient {
     to {
-        /* width: 101%;
-        height: 101%; */
-        stroke-width: 5px;
+        background-position: 200% center;
     }
 }
-.background-black {
+@keyframes animatedTextGradientMix {
+    0% {
+        --animation-mix: 100%;
+    }
+    5% {
+        --animation-mix: 95%;
+    }
+    10% {
+        --animation-mix: 90%
+    }
+    15% {
+        --animation-mix: 85%
+    }
+    20% {
+        --animation-mix: 80%
+    }
+    25% {
+        --animation-mix: 75%
+    }
+    30% {
+        --animation-mix: 70%
+    }
+    35% {
+        --animation-mix: 65%
+    }
+    40% {
+        --animation-mix: 60%
+    }
+    45% {
+        --animation-mix: 55%
+    }
+    50% {
+        --animation-mix: 50%
+    }
+    55% {
+        --animation-mix: 45%
+    }
+    60% {
+        --animation-mix: 40%
+    }
+    65% {
+        --animation-mix: 35%
+    }
+    70% {
+        --animation-mix: 30%
+    }
+    75% {
+        --animation-mix: 25%
+    }
+    80% {
+        --animation-mix: 20%
+    }
+    85% {
+        --animation-mix: 15%
+    }
+    90% {
+        --animation-mix: 10%
+    }
+    95% {
+        --animation-mix: 5%
+    }
+    100% {
+        --animation-mix: 0%
+    }
+}
+.header .navbar {
+    z-index: 2;
+    transition: 0.3s;
+    text-decoration: none;
+    align-items: center;
     display: flex;
-    position: fixed;
-    top: 0;
-    padding: 100%;
-    overflow: hidden;
-    background-color: color-mix(in srgb, Canvas, transparent 30%);
-    z-index: 5;
+}
+.header .navbar button{
+    z-index: 3;
+    transition: 0.3s;
+    all: unset;
+    background-color: color-mix(in srgb, CanvasText, transparent 100%);
+}
+.header .navbar .navbar-item {
+    z-index: 3;
+    text-align: center;
+    transition: 0.3s;
+    text-decoration: none;
+    color: color-mix(in srgb, CanvasText, grey 100%);
+    margin-right: 0.5rem;
+    margin-left: 1.5rem;
+    border-radius: 50px;
+    outline-style: none;
+    font-weight: 500;
+}
+@keyframes fadeOut {
+    0% {
+        transition: 0.3s;
+        opacity: 1;
+    }
+    100% {
+        transition: 0.3s;
+        opacity: 0;
+        visibility: hidden;
+        /* margin: 0px; */
+    }
+}
+@keyframes fadeIn {
+    0% {
+        transition: 0.3s;
+        opacity: 0;
+        /* display: none; */
+    }
+    100% {
+        transition: 0.3s;
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+/* Drop-down menu after 760px */
+.dropdown-menu .dropdown-menu-icon {
+    z-index: 3;
+    transition: 0.3s;
+    opacity: 0;
+    text-align: right;
+    margin-left: 1rem;
+    margin-right: 0rem;
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 2rem !important;
+    height: 2rem !important;
+    line-height: 2rem !important;
+    width: 2rem !important;
+    pointer-events: none;
+    visibility: hidden;
+    border-radius: 50px;
+    cursor: pointer;
+}
+.dropdown-menu .dropdown-menu-icon path {
+    transition: 0.3s;
+    fill: color-mix(in srgb, CanvasText, grey 70%);
+}
+.dropdown-menu-icon:hover {
+    font-size: 0rem !important;
+    height: 0rem !important;
+    line-height: 0rem !important;
+    width: 0rem !important;
+}
+.dropdown-menu:has(.dropdown-menu-icon:hover) .dropdown-menu-icon path {
+    fill: color-mix(in srgb, CanvasText, grey 0%);
+}
+.dropdown-menu:focus-visible .dropdown-menu-icon path {
+    fill: color-mix(in srgb, CanvasText, grey 0%);
+}
+
+/* Drop-down menu after hover other elements */
+body:has(.dropdown-menu .dropdown-menu-icon:hover) .header .navbar .navbar-item {
+    opacity: 1;
+    visibility: visible;
+    filter: blur(0px);
+    pointer-events: auto;
+    /* margin: auto; */
+}
+
+.header .navbar .navbar-item:hover {
+    color: color-mix(in srgb, CanvasText, Canvas 0%);
+}
+.header .navbar .navbar-item:focus-visible {
+    outline-offset: 7px;
+    color: color-mix(in srgb, CanvasText, Canvas 0%);
+}
+.navbar-button {
+    z-index: 3;
+    transition: 0.3s;
+    align-items: center;
+    background: transparent;
+    border: none;
+    color: CanvasText;
+    cursor: pointer;
+    display: flex;
+}
+.navbar-button .navbar-button-icon {
+    z-index: 3;
+    transition: 0.3s;
+    margin-left: 0.5rem;
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 1.5rem !important;
+    height: 1.5rem !important;
+    line-height: 1.5rem !important;
+    width: 1.5rem !important;
+    cursor: pointer;
+}
+.navbar-button .navbar-button-icon path {
+    transition: 0.3s;
+    fill: color-mix(in srgb, CanvasText, grey 100%);
+}
+.navbar-button:has(.navbar-button-icon:hover) .navbar-button-icon path {
+    fill: color-mix(in srgb, CanvasText, grey 0%);
+}
+.navbar-button:focus-visible .navbar-button-icon path {
+    fill: color-mix(in srgb, CanvasText, grey 0%);
+}
+
+/*Dialog*/
+@keyframes dialogFadein {
+    0% {
+        transition: 0.3s;
+        opacity: 0;
+        display: none;
+        filter: blur(15px);
+    }
+    100% {
+        transition: 0.3s;
+        opacity: 1;
+        display: block;
+        filter: blur(0px);
+    }
+}
+@keyframes dialogFadeout {
+    0% {
+        transition: 0.3s;
+        opacity: 1;
+        display: block;
+        filter: blur(0px);
+    }
+    100% {
+        transition: 0.3s;
+        opacity: 0;
+        display: none;
+        filter: blur(15px);
+    }
 }
 .alert-info {
     transition: 0.3s;
     align-items: center;
-    position: static;
+    position: sticky;
     top: 80px;
     margin: 15px auto;
-    max-width: 200px;
+    margin-right: 15px;
+    max-width: 250px;
     padding: 13px;
     color: white;
     background-color: rgb(76, 175, 80);
@@ -77,25 +352,53 @@ html, body {
     vertical-align: text-top;
     /* visibility: collapse; */
     opacity: 0;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
 }
 .alert-info svg {
     all: unset;
     font-size: 1.5rem;
     vertical-align: bottom;
-    margin-right: 5px;
+    margin-right: 25px;
 }
-.main {
-    display: flex-box;
-    z-index: 999;
-    align-items: center;
-    text-align: center;
-    margin-top: -10px;
+.alert-info .close {
+    all: unset;
+    font-size: 1rem;
+    /* transition: 0.3s; */
+    margin-left: 10px;
+    font-weight: 1000;
+    color: color-mix(in srgb, white, lightgrey 100%);
+    cursor: pointer;
+}
+.alert-info .close:hover {
+    color: color-mix(in srgb, white, lightgrey 0%);
+}
+/* html:has(#text-copy:active) .alert {
+    visibility: visible;
+} */
+dialog {
+    z-index: 5;
+    transition: 0.3s;
+    animation: dialogFadein 0.3s forwards;
+}
+dialog:not(:target):not([open]) {
+    z-index: 5;
+    transition: 0.3s;
+    animation: dialogFadeout 0.3s forwards;
+}
+.header-dialog {
+    z-index: 5;
+    transition: 0.3s;
+    margin: 15px auto;
+    /* margin-right: 14rem; */
+    /* right: -1270px; */
+	padding: 5px;
+    color: CanvasText;
+	border: 1.5px solid color-mix(in srgb, CanvasText, Canvas 70%);
+    background-color: color-mix(in srgb, Canvas, transparent 17%);
+    backdrop-filter: blur(5px);
+    border-radius: 24px;
+    height: auto;
+    box-shadow: 0 0px 0px color-mix(in srgb, CanvasText, Canvas 70%);
+	position: fixed;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     -khtml-user-select: none;
@@ -103,82 +406,838 @@ html, body {
     -ms-user-select: none;
     user-select: none;
 }
-.contact, .donate {
-    display: flex-box;
-    margin: auto;
-    margin-top: 10px;
-    align-items: center;
-    text-align: center;
-}
-.item {
-    margin-top: 20px;
-}
-.link {
+.header-dialog:hover {
     transition: 0.3s;
+    border: 1.5px solid color-mix(in srgb, CanvasText, Canvas 0%);
+}
+.header-dialog h2 {
+    padding: 15px;
+    text-align: center;
     vertical-align: text-top;
-    font-size: 1.5rem !important;
-    height: 1.5rem !important;
-    line-height: 1.5rem !important;
-    margin-bottom: 1em;
+}
+.header-dialog h2 svg {
+    margin-top: 1px;
+    vertical-align:text-top;
+}
+.header-dialog-close-blank {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: -1920px;
+    padding: 1000%;
+    width: calc(infinity);
+    height: calc(infinity);
+    cursor: default;
+    background-color: color-mix(in srgb, Canvas, transparent 17%);
+    backdrop-filter: blur(5px);
+    z-index: -1;
+}
+.header-dialog .header-dialog-close-icon {
+    transition: 0.3s;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 3px;
+    right: 10px;
+    font-size: 24px;
+    font-weight: bold;
     text-decoration: none;
-    color: CanvasText;
-    border-radius: 12px;
-    padding: 8px;
-    background-color: color-mix(in srgb, Canvas, grey 0%);
-    word-break: break-all;
-    margin: 15px;
+    background-color: transparent;
+    border-color: transparent;
+    outline-style: none;
+    color: color-mix(in srgb, CanvasText, grey 100%);
+}
+.header-dialog .header-dialog-close-icon:hover {
+    color: color-mix(in srgb, CanvasText, grey 0%);
     cursor: pointer;
 }
-.item noscript {
-    margin-top: 10px;
-    display: block;
+.header-dialog .header-dialog-close-icon:focus-visible {
+    color: color-mix(in srgb, CanvasText, grey 0%);
+}
+.header-dialog .header-dialog-button {
+    transition: 0.3s;
+    border-radius: 50px;
+    border-color: transparent;
+    outline-style: none;
+    margin: auto;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    /* margin-bottom: ;
+    margin-top: 15px; */
+    background-color: transparent;
+    color: color-mix(in srgb, CanvasText, grey 100%);
+    align-items: center;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+}
+.header-dialog .header-dialog-button:hover {
+    color: color-mix(in srgb, CanvasText, grey 0%);
+    cursor: pointer;
+}
+.header-dialog .header-dialog-button:focus-visible {
+    color: color-mix(in srgb, CanvasText, grey 0%);
+}
+.wallet {
+    text-align: center;
+    word-break: break-all;
+    padding: 15px;
+    -webkit-touch-callout: text;
+    -webkit-user-select: text;
+    -khtml-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+    animation: glow 1s ease-in-out infinite alternate;
+}
+.wallet::-moz-selection {
+    background-color: color-mix(in srgb, Canvas, var(--primary) 90%);
+}
+.wallet::selection {
+    background-color: color-mix(in srgb, Canvas, var(--primary) 90%);
+}
+@keyframes glow{
+    from{text-shadow:0px 0px 5px CanvasText ,0px 0px 5px var(--primary);}
+    to{text-shadow:0px 0px 20px CanvasText,0px 0px 20px var(--primary);}
+  }
+/* Dialog Appearence */
+/* Dialog Languages */
+.header-dialog-languages-items, .header-dialog-appearance-items {
+    transition: 0.3s;
+    text-decoration: none;
+    align-items: left;
+    text-align: left;
+    display: flexbox;
+    vertical-align: text-top;
+    width: auto;
+    height: auto;
+    padding:0.2em;
+}
+.header-dialog-appearance-items {
+    display: flex;
+}
+.header-dialog-appearance-item {
+    margin: auto 5px;
+}
+.header-dialog-languages-item-button svg, .header-dialog-appearance-item-button svg {
+    transition: 0.3s;
+    font-size: 1.65rem;
+    line-height: 1.5rem;
+    margin-top: .15rem;
+    margin-right: .5rem;
+}
+.header-dialog-appearance-item svg {
+    margin-right: .2rem;
+}
+.header-dialog-appearance-item-button.active svg path {
+    transition: 0.3s;
+    fill: Canvas;
+}
+.header-dialog-languages-item span, .header-dialog-appearance-item span {
+    align-items: left;
+    text-decoration: none;
+    font-size: 1.2rem;
+    line-height: 1.5rem;
+    vertical-align: super;
+}
+.header-dialog-languages-item-button, .header-dialog-appearance-item-button {
+    color: color-mix(in srgb, CanvasText, grey 100%);
+    transition: 0.3s;
+    text-decoration: none;
+    text-align: left;
+    align-items: center;
+    width: 150px;
+    height: auto;
+    margin: auto;
+    background-color: color-mix(in srgb, transparent, grey 0%);
+    border-color: transparent;
+    cursor: pointer;
+    padding:0.2em;
+    outline-style: none;
+    border-radius: 12px;
+}
+.header-dialog-appearance-item-button {
+    text-align: center;
+    width: auto+10px;
+    border-radius: 16px;
+}
+.header-dialog-languages-item-button:hover, .header-dialog-appearance-item-button:hover {
+    color: color-mix(in srgb, CanvasText, grey 0%);
+}
+.header-dialog-languages-item-button:focus-visible, .header-dialog-appearance-item-button:focus-visible {
+    color: color-mix(in srgb, CanvasText, grey 0%);
+}
+.header-dialog-languages-item-button.active, .header-dialog-appearance-item-button.active {
+    transition: 0.3s;
+    color: Canvas;
+    background-color: color-mix(in srgb, CanvasText, grey 0%);
+    pointer-events: none;
+}
+
+/*Footer*/
+.footer {
+    /* font-family:monospace; */
+    font-size:smaller;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 1.5rem;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.footer p {
+    transition: 0.3s;
+    display: inline-block;
+    color: CanvasText;
+}
+.footer a {
+    transition: 0.3s;
+    margin-left: 5px;
+    color: color-mix(in srgb, CanvasText, grey 70%);
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 50px;
+    outline-style: none;
+}
+.footer svg {
+    transition: 0.3s;
+    margin-left: 5px;
+    margin-bottom: -2px;
+}
+.footer svg path {
+    transition: 0.3s;
+    fill: color-mix(in srgb, CanvasText, var(--primary) 60%);
+}
+.footer svg path:hover {
+    fill: color-mix(in srgb, CanvasText, var(--primary) 100%);
+}
+.footer a:hover {
+    color: color-mix(in srgb, CanvasText, grey 0%);
+}
+.footer a:focus-visible {
+    outline-offset: 7px;
+    color: color-mix(in srgb, CanvasText, grey 0%);
+}
+hr {
+    border: none;
+    height: 1px;
+    width: 95%;
+    background-color: color-mix(in srgb, CanvasText, grey 70%);;
+    margin-bottom: 20px;
+}
+
+/*main*/
+.main {
+    transition: 0.3s;
+    align-items: center;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    margin-top: 250px;
+    margin-bottom: 250px;
+}
+.main-page-info {
+    align-items: center;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+.main-page-text {
+    text-align: center;
+    font-size: 2.75rem;
+    font-weight: 600;
+    line-height: 3.25rem;
+}
+.main-page-subtext {
+    text-align: center;
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+    margin-bottom: 30px;
+    /* margin: 30px auto; */
+}
+.main-page-subtext-gradient {
+    transition: 0.3s;
+    --animation-color: var(--primary);
+    --animation-extra: CanvasText;
+    --animation-mix: 100%;
+    text-decoration: none;
+    color: color-mix(in srgb, CanvasText, var(--primary) 70%);
+    background: radial-gradient(
+        circle at 100%,
+        color-mix(in srgb, var(--animation-extra), var(--animation-color) var(--animation-mix)),
+        color-mix(in srgb, var(--animation-extra), var(--animation-color) 50%)  50%,
+        color-mix(in srgb, var(--animation-extra), var(--animation-color) var(--animation-mix)) 75%,
+        color-mix(in srgb, var(--animation-extra), var(--animation-color) var(--animation-mix)) 75%
+    );
+    font-weight: 600;
+    background-size: 200% auto;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: animatedTextGradient 1.5s linear infinite;
+}
+/*Sections*/
+.sections {
+    margin: 50px 0;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.section-title {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 650;
+    line-height: 2.5rem;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+.section-subtitle {
+    text-align: center;
+    font-size: 1.7rem;
+    font-weight: 550;
+    line-height: 2rem;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.section-group {
+    display: flex;
+    flex-direction: row;
+    max-width: 1000px;
+    /* padding: 0 25px; */
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.section-column-group {
+    vertical-align: middle;
     font-size: 1.5rem !important;
     height: 1.5rem !important;
     line-height: 1.5rem !important;
     margin-bottom: 1em;
-    word-break: break-all;
-    text-wrap:wrap;
-    -webkit-touch-callout: text;
-    -webkit-user-select: text;
-    -khtml-user-select: text;
-    -moz-user-select: text;
-    -ms-user-select: text;
-    user-select: text;
 }
-.item svg {
-    vertical-align: text-bottom;
-    padding: 1px;
-    margin-right: 5px;
+.section-column-group span, .section-column-group a {
+    color: CanvasText;
+    text-decoration: none;
+    vertical-align: text-top;
 }
-/* .link.copy {
-    -webkit-touch-callout: text;
-    -webkit-user-select: text;
-    -khtml-user-select: text;
-    -moz-user-select: text;
-    -ms-user-select: text;
-    user-select: text;
-} */
-.link svg {
-    vertical-align: text-bottom;
-    padding: 1px;
-    margin-right: 5px;
+.section-column-group .about-text {
+    font-weight: 600;
 }
-.link:hover {
+.section-column-group.languages, .section-column-group.tools, .section-column-group.donate, .section-column-group.social {
+    display: flex;
+    flex-wrap: wrap;
+}
+.section-items {
+    transition: 0.3s;
+    align-items: center;
+    padding: 8px;
+    border-radius: 12px;
+    display: inline-block;
+    vertical-align: middle;
+}
+.text-inactive {
+    color: color-mix(in srgb, CanvasText, grey 100%);
+    filter: blur(2px);
+    cursor: not-allowed;
+}
+.text-inactive path {
+    fill: color-mix(in srgb, CanvasText, grey 100%)
+}
+.header-dialog-donate-item {
+    margin: auto;
+    text-align: center;
+}
+.section-column-group.social .section-items, .section-column-group.donate .section-items {
+    cursor: pointer;
+}
+.section-column-group.social .section-items:hover, .section-column-group.donate .section-items:hover {
     background-color: color-mix(in srgb, Canvas, grey 17%);
 }
-@media (height <= 550px) {
-    .main {
-        margin-top: -50px;
+
+@media (width <= 760px) {
+    body:has(.dropdown-menu .dropdown-menu-icon:hover) .header .navbar .navbar-item {
+        margin-right: 0rem;
+        margin-left: 0.75rem;
     }
-    .item {
-        display: inline-flex;
-        margin-top: -50px;
+    body:has(.dropdown-menu .dropdown-menu-icon:not(:hover)) .header .navbar .navbar-item {
+        filter: blur(5px);
+        /* pointer-events: none; */
+        animation: fadeOut 0.5s forwards;
+        margin: 0;
+        max-width: 60px;
+        /* max-height: 15px; */
+        word-break: break-all;
+        white-space: nowrap;
+        overflow: hidden;
+        /* font-size: 12px; */
     }
-    .contact, .donate {
+    body:has(.dropdown-menu .dropdown-menu-icon:hover) .navbar-button .navbar-button-icon {
+        margin-right: 0rem;
+        margin-left: 0.75rem;
+    }
+    body:has(.dropdown-menu .dropdown-menu-icon:not(:hover)) .navbar-button .navbar-button-icon {
+        filter: blur(5px);
+        pointer-events: none;
+        animation: fadeOut 0.5s forwards;
+        margin: 0;
+        font-size: 0 !important;
+        height: 0 !important;
+        line-height: 0 !important;
+        width: 0 !important;
+    }
+    body:has(.dropdown-menu .dropdown-menu-icon:hover) .header .header-title {
+        pointer-events: none;
+        filter: blur(5px);
+        font-size: 0px;
+        margin-right: 0rem;
+        margin-left: -0.9rem;
+    }
+    .header-dialog-appearance-items {
+        display: flow-root;
+    }
+    .header-dialog-appearance-item {
+        margin: auto auto;
+    }
+    .header-dialog-appearance-item-button {
+        text-align: left;
+    }
+    .header-dialog-donate-items {
+        max-width: 340px;
         margin: auto;
-        margin-top: -20px;
     }
-    .alert-info {
-        margin-right: 15px;
+    .header-dialog-donate-item .wallet {
+        padding: 5px;
     }
+    .header {
+        min-height: 65px;
+    }
+    .header .dropdown-menu .dropdown-menu-icon {
+        visibility: visible;
+        pointer-events: auto;
+        animation: fadeIn 0.5s forwards;
+        margin-left: 0.5rem;
+        margin-right: 0;
+    }
+    .alert-info .close {
+        font-size: 1.3rem
+    }
+    .main-page-subtext {
+        padding: 0 45px;
+    }
+    .section-group.about {
+        display: table;
+        flex-direction: column;
+    }
+    .section-group.about.tools {
+        padding-bottom: 35px;
+    }
+    .section-group.social.games {
+        padding-bottom: 40px;
+    }
+    .section-group.donate {
+        margin: 15px;
+        /* padding: 0px; */
+    }
+}
+/*Main Page Text*/
+#main-page-text:after {
+    content: "Welcome to my site";
+}
+:lang(ru) #main-page-text:after {
+    content: "Добро пожаловать на мой сайт"
+}
+:lang(uk) #main-page-text:after {
+    content: "Ласкаво прошу до мого сайту"
+}
+:lang(meow) #main-page-text:after {
+    content: "Meowlcm meowo meowy meowtie"
+}
+/*Main Page SubText*/
+#main-page-subtext:before {
+    content: "Here you will find the information about ";
+}
+#main-page-subtext-gradient:after {
+    content: "me";
+}
+:lang(ru) #main-page-subtext:before {
+    content: "Здесь вы найдёте всю нформацию обо ";
+}
+:lang(ru) #main-page-subtext-gradient:after {
+    content: "мне";
+}
+:lang(uk) #main-page-subtext:before {
+    content: "Тут ви знайдете всю інформацію про ";
+}
+:lang(uk) #main-page-subtext-gradient:after {
+    content: "мене";
+}
+:lang(meow) #main-page-subtext:before {
+    content: "Meower meowu meowifn meowht meowifmr meowutb ";
+}
+:lang(meow) #main-page-subtext-gradient:after {
+    content: "meowme";
+}
+/* Sections */
+/*About*/
+#about-name:after {
+    content: "Name: "
+}
+:lang(ru) #about-name:after {
+    content: "Имя: "
+}
+:lang(uk) #about-name:after {
+    content: "Ім'я: "
+}
+:lang(meow) #about-name:after {
+    content: "Meownm: "
+}
+#about-birthday:after {
+    content: "Birthday: "
+}
+:lang(ru) #about-birthday:after {
+    content: "День рождения: "
+}
+:lang(uk) #about-birthday:after {
+    content: "День народження: "
+}
+:lang(meow) #about-birthday:after {
+    content: "Meowbhy: "
+}
+#about-country:after {
+    content: "Country: "
+}
+:lang(ru) #about-country:after {
+    content: "Страна: "
+}
+:lang(uk) #about-country:after {
+    content: "Країна: "
+}
+:lang(meow) #about-country:after {
+    content: "Meowctr: "
+}
+#about-city:after {
+    content: "City: "
+}
+:lang(ru) #about-city:after {
+    content: "Город: "
+}
+:lang(uk) #about-city:after {
+    content: "Місто: "
+}
+:lang(meow) #about-city:after {
+    content: "Meowcty: "
+}
+#about-name-info:after {
+    content: "Bogdan"
+}
+:lang(ru) #about-name-info:after {
+    content: "Богдан"
+}
+:lang(uk) #about-name-info:after {
+    content: "Богдан"
+}
+:lang(meow) #about-name-info:after {
+    content: "Meowbdn"
+}
+#about-birthday-info:after {
+    content: "18 June"
+}
+:lang(ru) #about-birthday-info:after {
+    content: "18 Июня"
+}
+:lang(uk) #about-birthday-info:after {
+    content: "18 Червня"
+}
+:lang(meow) #about-birthday-info:after {
+    content: "18 Meowjnu"
+}
+#about-country-info:after {
+    content: "Ukraine"
+}
+:lang(ru) #about-country-info:after {
+    content: "Украина"
+}
+:lang(uk) #about-country-info:after {
+    content: "Україна"
+}
+:lang(meow) #about-country-info:after {
+    content: "Meowukr"
+}
+#about-city-info:after {
+    content: "Zaporizhzhia"
+}
+:lang(ru) #about-city-info:after {
+    content: "Запорожье"
+}
+:lang(uk) #about-city-info:after {
+    content: "Запоріжжя"
+}
+:lang(meow) #about-city-info:after {
+    content: "Meowzhzha"
+}
+/*languages*/
+#about-languages:after {
+    content: "Programming languages"
+}
+:lang(ru) #about-languages:after {
+    content: "Языки программирования"
+}
+:lang(uk) #about-languages:after {
+    content: "Мови програмування"
+}
+:lang(meow) #about-languages:after {
+    content: "Meowmgn moewlgs"
+}
+/*Tools*/
+#about-tools:after {
+    content: "Tools"
+}
+:lang(ru) #about-tools:after {
+    content: "Инструменты"
+}
+:lang(uk) #about-tools:after {
+    content: "Інструменти"
+}
+:lang(meow) #about-tools:after {
+    content: "Meowlts"
+}
+/* NAV */
+/*About*/
+#nav-about:after, #about:after {
+    content: "About"
+}
+:lang(ru) #nav-about:after, :lang(ru) #about:after {
+    content: "Обо мне"
+}
+:lang(uk) #nav-about:after, :lang(uk) #about:after {
+    content: "Про мене"
+}
+:lang(meow) #nav-about:after, :lang(meow) #about:after {
+    content: "Meowme"
+}
+/*Projects*/
+#nav-projects:after, #projects:after {
+    content: "Projects"
+}
+:lang(ru) #nav-projects:after, :lang(ru) #projects:after {
+    content: "Проекты"
+}
+:lang(uk) #nav-projects:after, :lang(uk) #projects:after {
+    content: "Проєкти"
+}
+:lang(meow) #nav-projects:after, :lang(meow) #projects:after {
+    content: "Meowmtjcs"
+}
+/*Social*/
+#nav-social:after, #social:after {
+    content: "Social"
+}
+:lang(ru) #nav-social:after, :lang(ru) #social:after {
+    content: "Соц. сети"
+}
+:lang(uk) #nav-social:after, :lang(uk) #social:after {
+    content: "Соц. мережі"
+}
+:lang(meow) #nav-social:after, :lang(meow) #social:after {
+    content: "Meowiks"
+}
+#social-socials:after {
+    content: "Socials"
+}
+:lang(ru) #social-socials:after {
+    content: "Общение"
+}
+:lang(uk) #social-socials:after  {
+    content: "Спілкування"
+}
+:lang(meow) #social-socials:after  {
+    content: "Meowlcs"
+}
+#social-programming:after {
+    content: "Programming"
+}
+:lang(ru) #social-programming:after {
+    content: "Программирование"
+}
+:lang(uk) #social-programming:after  {
+    content: "Програмування"
+}
+:lang(meow) #social-programming:after  {
+    content: "Meowmgn"
+}
+#social-games:after {
+    content: "Games"
+}
+:lang(ru) #social-games:after {
+    content: "Игры"
+}
+:lang(uk) #social-games:after  {
+    content: "Ігри"
+}
+:lang(meow) #social-games:after  {
+    content: "Meowgsm"
+}
+#social-media:after {
+    content: "Media"
+}
+:lang(ru) #social-media:after {
+    content: "Медия"
+}
+:lang(uk) #social-media:after  {
+    content: "Медія"
+}
+:lang(meow) #social-media:after  {
+    content: "Meowdmi"
+}
+#social-misc:after {
+    content: "Misc"
+}
+:lang(ru) #social-misc:after {
+    content: "Другое"
+}
+:lang(uk) #social-misc:after  {
+    content: "Інше"
+}
+:lang(meow) #social-misc:after  {
+    content: "Meowcsi"
+}
+#social-mail:after {
+    content: "Mail"
+}
+:lang(ru) #social-mail:after {
+    content: "Почта"
+}
+:lang(uk) #social-mail:after  {
+    content: "Пошта"
+}
+:lang(meow) #social-mail:after  {
+    content: "Meowilm"
+}
+/*Donate*/
+#nav-donate:after, #donate:after {
+    content: "Donate"
+}
+:lang(ru) #nav-donate:after, :lang(ru) #donate:after {
+    content: "Донат"
+}
+:lang(uk) #nav-donate:after, :lang(uk) #donate:after  {
+    content: "Донат"
+}
+:lang(meow) #nav-donate:after, :lang(meow) #donate:after  {
+    content: "Meowte"
+}
+#donate-platforms:after {
+    content: "Platforms"
+}
+:lang(ru) #donate-platforms:after {
+    content: "Платформы"
+}
+:lang(uk) #donate-platforms:after  {
+    content: "Платформи"
+}
+:lang(meow) #donate-platforms:after  {
+    content: "Meowfsmr"
+}
+#donate-crypto:after {
+    content: "Crypto"
+}
+:lang(ru) #donate-crypto:after {
+    content: "Криптовалюты"
+}
+:lang(uk) #donate-crypto:after  {
+    content: "Криптовалюти"
+}
+:lang(meow) #donate-crypto:after  {
+    content: "Meowpctr"
+}
+/*Appearance LIGHT*/
+#text-appe-light:after {
+    content: "Light"
+}
+:lang(ru) #text-appe-light:after {
+    content: "Светлый"
+}
+:lang(uk) #text-appe-light:after {
+    content: "Світлий"
+}
+:lang(meow) #text-appe-light:after {
+    content: "Meowlht"
+}
+/*Appearance SYSTEM*/
+#text-appe-system:after {
+    content: "System"
+}
+:lang(ru) #text-appe-system:after {
+    content: "Системный"
+}
+:lang(uk) #text-appe-system:after {
+    content: "Системний"
+}
+:lang(meow) #text-appe-system:after {
+    content: "Meowstem"
+}
+/*Appearance DARK*/
+#text-appe-dark:after {
+    content: "Dark"
+}
+:lang(ru) #text-appe-dark:after {
+    content: "Тёмный"
+}
+:lang(uk) #text-appe-dark:after {
+    content: "Темний"
+}
+:lang(meow) #text-appe-dark:after {
+    content: "Meowrkd"
+}
+/*Copy*/
+#text-copy:after {
+    content: "Copy"
+}
+:lang(ru) #text-copy:after {
+    content: "Скопировать"
+}
+:lang(uk) #text-copy:after {
+    content: "Скопіювати"
+}
+:lang(meow) #text-copy:after {
+    content: "Meowypc"
+}
+/*Link*/
+#text-link:after {
+    content: "Go to page"
+}
+:lang(ru) #text-link:after {
+    content: "Перейти"
+}
+:lang(uk) #text-link:after {
+    content: "Перейти"
+}
+:lang(meow) #text-link:after {
+    content: "Meowg meowo meowgpe"
+}
+/*Made with LOVE*/
+#footer-made-with:after {
+    content: "made with"
+}
+:lang(ru) #footer-made-with:after {
+    content: "сделано с"
+}
+:lang(uk) #footer-made-with:after {
+    content: "зроблено з"
+}
+:lang(meow) #footer-made-with:after {
+    content: "meow"
 }
