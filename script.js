@@ -13,7 +13,7 @@ console.log(
 )
 
 function randomizePathAnimation() {
-  document.querySelectorAll('.background svg path').forEach((path) => {
+  document.querySelectorAll('.background.active svg path').forEach((path) => {
       const totalLength = path.getTotalLength();
       const randomDashArray = Math.random() * totalLength;
       const randomDashOffset = Math.random() * totalLength;
@@ -72,7 +72,16 @@ document.addEventListener('DOMContentLoaded', () => {
   typeWord();
 });
 document.addEventListener('DOMContentLoaded', () => {
-  document.querySelectorAll('.background svg path').forEach((path) => {
+  const backgrounds = document.querySelectorAll('.background');
+  function setRandomActive() {
+      backgrounds.forEach(bg => bg.classList.remove('active'));
+      const randomIndex = Math.floor(Math.random() * backgrounds.length);
+      backgrounds[randomIndex].classList.add('active');
+  }
+  setRandomActive();
+});
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.background.active svg path').forEach((path) => {
       const totalLength = path.getTotalLength();
       const randomDashOffset = Math.random() * totalLength;
       path.style.setProperty('--dashoffset', randomDashOffset);
