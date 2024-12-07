@@ -173,6 +173,7 @@ html, body {
     background-color: color-mix(in srgb, Canvas, grey 17%);
 }
 #title {
+    min-height: 37px;
     border-right: 2px solid CanvasText;
     white-space: nowrap;
     display: inline-block;
@@ -181,9 +182,6 @@ html, body {
     color: CanvasText;
     animation: cursorblinking 1s ease-in-out infinite alternate;
     /* animation: blink 0.6s step-start infinite; */
-}
-#title:empty {
-    padding-bottom: 37px;
 }
 noscript #title {
     border: none;
